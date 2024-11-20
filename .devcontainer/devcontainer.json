@@ -1,0 +1,27 @@
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"features": {
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "1.9.8",
+			"tflint": "latest",
+			"terragrunt": "latest"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-azureterraform",
+				"ms-azuretools.vscode-docker",
+				"donjayamanne.githistory",
+				"GitHub.vscode-github-actions",
+				"golang.go",
+				"HashiCorp.terraform",
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"ms-python.python",
+				"redhat.vscode-yaml"
+			]
+		}
+	}
+}
