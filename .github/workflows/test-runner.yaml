@@ -1,0 +1,9 @@
+name: Test ARC runners
+on:
+  workflow_dispatch:
+
+jobs:
+  test-run:
+    runs-on: arc-fph
+    steps:
+    - run: echo "This runs within the FPH cluster"

@@ -1,0 +1,3 @@
+write-kubeconfig-mode: 600
+server: https://fph.gelei.dev:9345
+token: TOKEN

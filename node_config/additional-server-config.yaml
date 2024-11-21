@@ -1,0 +1,7 @@
+write-kubeconfig-mode: 600
+tls-san:
+  - "fph.gelei.dev"
+node-taint:
+  - "CriticalAddonsOnly=true:NoExecute"
+server: https://fph.gelei.dev:9345
+token: TOKEN
