@@ -5,29 +5,23 @@ resource "helm_release" "rabbitmq_operator" {
   version    = "4.3.27"
   namespace  = "rabbitmq"
 
-  set {
-    name  = "clusterOperator.tolerations[0].key"
-    value = "CriticalAddonsOnly"
-  }
-  set {
-    name  = "clusterOperator.tolerations[0].operator"
-    value = "Exists"
-  }
-  set {
-    name  = "clusterOperator.tolerations[0].effect"
-    value = "NoExecute"
-  }
-
-  set {
-    name  = "msgTopologyOperator.tolerations[0].key"
-    value = "CriticalAddonsOnly"
-  }
-  set {
-    name  = "msgTopologyOperator.tolerations[0].operator"
-    value = "Exists"
-  }
-  set {
-    name  = "msgTopologyOperator.tolerations[0].effect"
-    value = "NoExecute"
-  }
+  values = [<<EOF
+clusterOperator:
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      effect: "NoExecute"
+      value: "true"
+  nodeSelector:
+    role: server
+msgTopologyOperator:
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      effect: "NoExecute"
+      value: "true"
+  nodeSelector:
+    role: "server"
+EOF
+]
 }
