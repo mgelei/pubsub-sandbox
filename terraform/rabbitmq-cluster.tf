@@ -53,3 +53,20 @@ resource "kubernetes_manifest" "rabbitmq_cluster" {
     }
   }
 }
+
+resource "kubernetes_manifest" "rabbitmq_vhost" {
+  manifest = {
+    apiVersion = "rabbitmq.com/v1beta1"
+    kind       = "Vhost"
+    metadata = {
+      name      = "rabbitmq-vhost"
+      namespace = "rabbitmq"
+    }
+    spec = {
+      name = "fph"
+      rabbitmqClusterReference = {
+        name      = "rabbitmq-cluster"
+      }
+    }
+  }
+}
