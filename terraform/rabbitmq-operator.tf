@@ -23,5 +23,6 @@ msgTopologyOperator:
   nodeSelector:
     role: "server"
 EOF
-]
+  ]
 }
+
