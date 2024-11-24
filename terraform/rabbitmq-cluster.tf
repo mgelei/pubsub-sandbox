@@ -65,7 +65,7 @@ resource "kubernetes_manifest" "rabbitmq_vhost" {
     spec = {
       name = "fph"
       rabbitmqClusterReference = {
-        name      = "rabbitmq-cluster"
+        name = "rabbitmq-cluster"
       }
     }
   }
