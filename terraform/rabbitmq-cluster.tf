@@ -33,8 +33,22 @@ resource "kubernetes_manifest" "rabbitmq_cluster" {
           value    = "true"
         }
       ]
-      nodeSelector = {
-        role = "server"
+      affinity = {
+        nodeAffinity = {
+          requiredDuringSchedulingIgnoredDuringExecution = {
+            nodeSelectorTerms = [
+              {
+                matchExpressions = [
+                  {
+                    key      = "role"
+                    operator = "In"
+                    values   = ["server"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
       }
     }
   }
