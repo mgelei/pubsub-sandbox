@@ -7,12 +7,7 @@ resource "kubernetes_manifest" "rabbitmq-user" {
       namespace = "rabbitmq"
     }
     spec = {
-      tags = {
-        management    = "true"
-        policymaker   = "true"
-        administrator = "true"
-        monitoring    = "true"
-      }
+      tags = ["management", "policymaker", "administrator", "monitoring"]
       rabbitmqClusterReference = {
         name = "rabbitmq-cluster"
       }
@@ -29,6 +24,7 @@ resource "kubernetes_manifest" "rabbitmq-permission" {
     kind       = "Permission"
     metadata = {
       name = "rabbitmq-permission-admin"
+      namespace = "rabbitmq"
     }
     spec = {
       vhost = "fph"
