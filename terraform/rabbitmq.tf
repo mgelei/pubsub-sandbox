@@ -6,22 +6,28 @@ resource "helm_release" "rabbitmq_operator" {
   namespace  = "rabbitmq"
 
   set {
-    name  = "tolerations[0].key"
+    name  = "clusterOperator.tolerations[0].key"
     value = "CriticalAddonsOnly"
   }
-
   set {
-    name  = "tolerations[0].operator"
-    value = "Equal"
+    name  = "clusterOperator.tolerations[0].operator"
+    value = "Exists"
+  }
+  set {
+    name  = "clusterOperator.tolerations[0].effect"
+    value = "NoExecute"
   }
 
   set {
-    name  = "tolerations[0].value"
-    value = "true"
+    name  = "msgTopologyOperator.tolerations[0].key"
+    value = "CriticalAddonsOnly"
   }
-
   set {
-    name  = "tolerations[0].effect"
+    name  = "msgTopologyOperator.tolerations[0].operator"
+    value = "Exists"
+  }
+  set {
+    name  = "msgTopologyOperator.tolerations[0].effect"
     value = "NoExecute"
   }
 }
