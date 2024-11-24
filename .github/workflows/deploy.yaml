@@ -11,9 +11,13 @@ jobs:
     concurrency:
       group: terraform
       cancel-in-progress: false
+    environment: prod
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Seed kubeconfig from secrets
+        run: echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
 
       - name: Install Terraform
         run: |
