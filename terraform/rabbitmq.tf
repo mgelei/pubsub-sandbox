@@ -3,6 +3,7 @@ resource "helm_release" "rabbitmq_operator" {
     repository = "https://charts.bitnami.com/bitnami"
     chart      = "rabbitmq-cluster-operator"
     version    = "4.3.27"
+    namespace  = "rabbitmq"
 
     set {
         name  = "tolerations[0].key"
