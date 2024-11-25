@@ -23,7 +23,7 @@ resource "kubernetes_manifest" "rabbitmq-permission" {
     apiVersion = "rabbitmq.com/v1beta1"
     kind       = "Permission"
     metadata = {
-      name = "rabbitmq-permission-admin"
+      name      = "rabbitmq-permission-admin"
       namespace = "rabbitmq"
     }
     spec = {

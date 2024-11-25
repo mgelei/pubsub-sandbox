@@ -80,8 +80,8 @@ resource "kubernetes_manifest" "rabbitmq_queue" {
       namespace = "rabbitmq"
     }
     spec = {
-      name = "proba-feladat"
-      vhost = "fph"
+      name    = "proba-feladat"
+      vhost   = "fph"
       durable = true
       rabbitmqClusterReference = {
         name = "rabbitmq-cluster"
