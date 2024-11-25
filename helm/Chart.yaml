@@ -1,5 +1,5 @@
 name: pubsub-sandbox
 apiVersion: v2
-version: 0.1.3
+version: 0.1.4
 description: A sample RabbitMQ-based pub-sub application in Python
 home: https://github.com/mgelei/pubsub-sandbox/
