@@ -12,6 +12,5 @@ if __name__ == '__main__':
         credentials=pika.PlainCredentials("admin", "admin")) # this most definitely shouldn't be hardcoded - use k8s secrets instead
     connection = pika.BlockingConnection(connection_parameters)
     channel = connection.channel()
-    channel.queue_declare(queue='proba-feladat')
     channel.basic_consume(queue='proba-feladat', on_message_callback=callback, auto_ack=True)
     channel.start_consuming()
