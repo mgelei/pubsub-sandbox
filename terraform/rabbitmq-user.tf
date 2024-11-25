@@ -30,9 +30,9 @@ resource "kubernetes_manifest" "rabbitmq-permission" {
       vhost = "fph"
       user  = "rabbitmq-user-admin"
       permissions = {
-        configure = "proba-feladat.*"
-        write     = "proba-feladat.*"
-        read      = "proba-feladat.*"
+        configure = ".*"
+        write     = ".*"
+        read      = ".*"
       }
       rabbitmqClusterReference = {
         name = "rabbitmq-cluster"
