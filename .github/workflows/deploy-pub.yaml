@@ -25,6 +25,6 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v6
         with:
-          context: ./pub-app/Dockerfile
+          context: ./pub-app/
           push: true
           tags: mgelei/pub-sandbox:latest
