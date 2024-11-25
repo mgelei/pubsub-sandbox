@@ -11,11 +11,11 @@ resource "kubernetes_manifest" "rabbitmq_cluster" {
       resources = {
         requests = {
           cpu    = "100m"
-          memory = "256Mi"
+          memory = "1Gi"
         }
         limits = {
           cpu    = "500m"
-          memory = "512Mi"
+          memory = "2Gi"
         }
       }
       service = {
@@ -23,7 +23,7 @@ resource "kubernetes_manifest" "rabbitmq_cluster" {
       }
       persistence = {
         storageClassName = "longhorn"
-        storage          = "1Gi"
+        storage          = "5Gi"
       }
       tolerations = [
         {
