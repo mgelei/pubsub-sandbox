@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sub-app
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: 1
+    spec:
+      containers:
+      - name: sub-app
+        image: ghcr.io/mgelei/sub-sandbox:latest
