@@ -17,5 +17,5 @@ spec:
         - name: pub-sandbox
           image: ghcr.io/mgelei/pub-sandbox:latest
           imagePullPolicy: IfNotPresent
-          imagePullSecrets:
-            - name: ghcr-login-secret
+      imagePullSecrets:
+        - name: ghcr-login-secret
