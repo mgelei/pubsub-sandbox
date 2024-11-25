@@ -17,3 +17,5 @@ spec:
         - name: sub-sandbox
           image: ghcr.io/mgelei/sub-sandbox:latest
           imagePullPolicy: IfNotPresent
+          imagePullSecrets:
+            - name: ghcr-login-secret
