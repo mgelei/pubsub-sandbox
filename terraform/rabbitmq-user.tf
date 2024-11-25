@@ -28,7 +28,7 @@ resource "kubernetes_manifest" "rabbitmq-permission" {
     }
     spec = {
       vhost = "fph"
-      user  = "admin"
+      user  = "admin" # should use userReference instead
       permissions = {
         configure = ".*"
         write     = ".*"
