@@ -2,7 +2,7 @@ from datetime import datetime
 import pika
 
 def callback(ch, method, properties, body):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"Received {body} at {timestamp}")
 
 if __name__ == '__main__':
