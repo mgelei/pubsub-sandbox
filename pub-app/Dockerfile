@@ -1,6 +1,5 @@
-FROM almalinux:9.4
-RUN python3 -m ensurepip --upgrade
+FROM python:3.12-slim
 WORKDIR /app
 COPY . .
-RUN python3 -m pip install -r requirements.txt
-CMD ["python3", "pub-app.py"]
+RUN pip install --no-cache-dir -r requirements.txt
+CMD ["python", "pub-app.py"]
