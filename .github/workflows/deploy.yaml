@@ -1,0 +1,76 @@
+name: Deploy apps
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'pub-app/**'
+      - 'sub-app/**'
+  workflow_dispatch:
+
+jobs:
+  pub-build: # These two jobs are nearly identical, might want to merge them to a matrix
+    runs-on: ubuntu-22.04
+    name: Build Docker image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy requirements.txt
+        run: cp requirements.txt ./pub-app/
+        
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./pub-app/
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/pub-sandbox:latest
+
+  sub-build:
+    runs-on: ubuntu-22.04
+    name: Build Docker image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy requirements.txt
+        run: cp requirements.txt ./sub-app/
+        
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./sub-app/
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/sub-sandbox:latest
+
+  helm:
+    needs: [pub-build, sub-build]
+    runs-on: arc-fph # Using a self-hosted runner so I don't have to punch holes in my firewall
+    name: Deploy apps
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Helm
+        run: sudo apt update && sudo apt install -y helm kubectl
+
+      - name: Inject kubeconfig
+        run: echo "${{ secrets.KUBECONFIG }}" > kubeconfig
+
+      - name: Install/upgrade project
+        run: helm upgrade --install pubsub ./helm
