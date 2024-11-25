@@ -13,6 +13,9 @@ jobs:
   pub-build: # These two jobs are nearly identical, might want to merge them to a matrix
     runs-on: ubuntu-22.04
     name: Build Docker image
+    concurrency:
+      group: pub-build
+      cancel-in-progress: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -37,6 +40,9 @@ jobs:
   sub-build:
     runs-on: ubuntu-22.04
     name: Build Docker image
+    concurrency:
+      group: sub-build
+      cancel-in-progress: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,6 +69,9 @@ jobs:
     runs-on: arc-fph # Using a self-hosted runner so I don't have to punch holes in my firewall
     name: Deploy apps
     environment: prod
+    concurrency:
+      group: helm
+      cancel-in-progress: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
