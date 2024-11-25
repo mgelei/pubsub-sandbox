@@ -28,7 +28,7 @@ resource "kubernetes_manifest" "rabbitmq-permission" {
     }
     spec = {
       vhost = "fph"
-      user  = "admin"
+      user  = "rabbitmq-user-admin"
       permissions = {
         configure = ".*"
         write     = ".*"
