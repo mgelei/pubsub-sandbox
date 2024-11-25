@@ -18,7 +18,7 @@ resource "kubernetes_manifest" "rabbitmq-user" {
   }
 }
 
-resource "kubernetes_manifest" "rabbitmq-permission" {
+resource "kubernetes_manifest" "rabbitmq-permission-reference" {
   manifest = {
     apiVersion = "rabbitmq.com/v1beta1"
     kind       = "Permission"
@@ -27,8 +27,8 @@ resource "kubernetes_manifest" "rabbitmq-permission" {
       namespace = "rabbitmq"
     }
     spec = {
-      vhost = "fph"
-      user  = "rabbitmq-user-admin"
+      vhost         = "fph"
+      userReference = "rabbitmq-user-admin"
       permissions = {
         configure = ".*"
         write     = ".*"
