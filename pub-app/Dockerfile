@@ -2,5 +2,5 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
-ENV PYTHONUNBUFFERED=0
+ENV PYTHONUNBUFFERED=1
 CMD ["python", "pub-app.py"]
