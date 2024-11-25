@@ -1,0 +1,33 @@
+name: Deploy Consumer
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'sub-app/**'
+  workflow_dispatch:
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-22.04
+    name: Build Docker image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy requirements.txt
+        run: cp requirements.txt ./sub-app/
+        
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./sub-app/
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/sub-sandbox:latest
