@@ -3,4 +3,4 @@ RUN python3 -m ensurepip --upgrade
 WORKDIR /app
 COPY . .
 RUN python3 -m pip install -r requirements.txt
-CMD ["python", "pub-app.py"]
+CMD ["python3", "pub-app.py"]
