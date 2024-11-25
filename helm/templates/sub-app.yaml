@@ -16,6 +16,6 @@ spec:
       containers:
         - name: sub-sandbox
           image: ghcr.io/mgelei/sub-sandbox:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: pika.exceptions.ConnectionWrongStateError: Channel allocation requires an open connection
       imagePullSecrets:
         - name: ghcr-login-secret

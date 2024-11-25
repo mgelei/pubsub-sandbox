@@ -16,6 +16,6 @@ spec:
       containers:
         - name: pub-sandbox
           image: ghcr.io/mgelei/pub-sandbox:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
       imagePullSecrets:
         - name: ghcr-login-secret
