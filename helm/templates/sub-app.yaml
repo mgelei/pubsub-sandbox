@@ -5,7 +5,6 @@ metadata:
   namespace: {{.Values.namespace}}
 spec:
   replicas: 1
-    spec:
-      containers:
-      - name: sub-app
-        image: ghcr.io/mgelei/sub-sandbox:latest
+  containers:
+  - name: sub-app
+    image: ghcr.io/mgelei/sub-sandbox:latest
