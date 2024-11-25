@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Copy requirements.txt
-        run: cp pub-app/requirements.txt .
+        run: cp requirements.txt ./pub-app/
         
       - name: Login to GHCR
         uses: docker/login-action@v3
