@@ -84,7 +84,9 @@ jobs:
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Inject kubeconfig
-        run: echo "${{ secrets.KUBECONFIG }}" > kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
 
       - name: Install/upgrade project
         run: helm upgrade --install pubsub ./helm
