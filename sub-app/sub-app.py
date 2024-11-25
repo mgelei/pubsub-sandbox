@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import pika
 
 def callback(ch, method, properties, body):

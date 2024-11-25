@@ -1,6 +1,6 @@
 import pika
 import random
-import datetime
+from datetime import datetime
 import asyncio
 
 async def produce_numbers(channel):
