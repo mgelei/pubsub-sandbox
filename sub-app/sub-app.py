@@ -7,7 +7,7 @@ def callback(ch, method, properties, body):
 
 if __name__ == '__main__':
     connection_parameters = pika.ConnectionParameters(
-        host="rabbitmq-cluster.svc.cluster.local", # this shouldn't be hardcoded
+        host="10.43.107.239", # this shouldn't be hardcoded
         virtual_host="fph",
         credentials=pika.PlainCredentials("admin", "admin")) # this most definitely shouldn't be hardcoded - use k8s secrets instead
     connection = pika.BlockingConnection(connection_parameters)
