@@ -1,10 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sub-app
+  name: sub-sandbox
   namespace: {{.Values.namespace}}
 spec:
   replicas: 1
-  containers:
-  - name: sub-app
-    image: ghcr.io/mgelei/sub-sandbox:latest
+  selector:
+    matchLabels:
+      app: sub-sandbox
+  template:
+    metadata:
+      labels:
+        app: sub-sandbox
+    spec:
+      containers:
+        - name: sub-sandbox
+          image: ghcr.io/mgelei/sub-sandbox:latest
+          imagePullPolicy: IfNotPresent
