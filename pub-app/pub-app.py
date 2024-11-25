@@ -19,6 +19,5 @@ if __name__ == '__main__':
         credentials=pika.PlainCredentials("admin", "admin")) # this most definitely shouldn't be hardcoded - use k8s secrets instead
     connection = pika.BlockingConnection(connection_parameters)
     channel = connection.channel()
-    channel.queue_declare(queue='proba-feladat')
 
     asyncio.run(produce_numbers(channel))
