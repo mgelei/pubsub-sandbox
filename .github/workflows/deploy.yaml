@@ -6,6 +6,7 @@ on:
     paths:
       - 'pub-app/**'
       - 'sub-app/**'
+      - 'helm/**'
   workflow_dispatch:
 
 jobs:
