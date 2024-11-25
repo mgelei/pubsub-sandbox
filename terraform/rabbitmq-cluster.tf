@@ -70,3 +70,22 @@ resource "kubernetes_manifest" "rabbitmq_vhost" {
     }
   }
 }
+
+resource "kubernetes_manifest" "rabbitmq_queue" {
+  manifest = {
+    apiVersion = "rabbitmq.com/v1beta1"
+    kind       = "Queue"
+    metadata = {
+      name      = "rabbitmq-queue"
+      namespace = "rabbitmq"
+    }
+    spec = {
+      name = "proba-feladat"
+      vhost = "fph"
+      durable = true
+      rabbitmqClusterReference = {
+        name = "rabbitmq-cluster"
+      }
+    }
+  }
+}
