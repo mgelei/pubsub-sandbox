@@ -86,6 +86,7 @@ resource "kubernetes_manifest" "rabbitmq_queue" {
       rabbitmqClusterReference = {
         name = "rabbitmq-cluster"
       }
+      autoDelete = false
     }
   }
 }
